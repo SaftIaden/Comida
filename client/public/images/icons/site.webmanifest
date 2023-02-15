@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Comida",
+    "short_name": "comida",
     "icons": [
         {
             "src": "/images/icons/android-chrome-192x192.png",
