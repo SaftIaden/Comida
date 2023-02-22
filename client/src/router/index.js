@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import LikeView from '../views/LikeView.vue';
-import HomeView from '../views/HomeView.vue';
+import CameraView from '../views/CameraView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +15,11 @@ const router = createRouter({
       path: '/likes',
       name: 'likes',
       component: LikeView,
+    },
+    {
+      path: '/camera',
+      name: 'camera',
+      component: CameraView,
     },
   ],
 });
