@@ -14,24 +14,29 @@
       autoplay
     >
     </Camera>
-    <button @click="snapshot">Create snapshot</button>
+    <button @click="snapShot">Create snapshot</button>
   </q-page>
 </template>
 
 <script setup>
 import Camera from 'simple-vue-camera';
 import { onMounted, ref } from 'vue';
-
-onMounted(async () => {});
+import axios from 'axios';
 
 const camera = ref();
 
-const snapshot = async () => {
+const snapShot = async () => {
   const blob = await camera.value?.snapshot();
-
+  console.log(blob);
   // To show the screenshot with an image tag, create a url
   const url = URL.createObjectURL(blob);
   console.log(url);
+  
+
+  return {
+    camera,
+    snapShot,
+  };
 };
 
 const loading = () => console.log('Camera is loading and will start any second');
@@ -40,6 +45,6 @@ const stopped = () => console.log('Camera has stopped');
 const paused = () => console.log('Video feed has paused');
 const resumed = () => console.log('Video feed has resumed');
 const cameraChange = (deviceID) => console.log(`Camera has been changed to ${deviceID}`);
-// const snapshot = (blob) => console.log('A snapshot has been taken');
+const snapshot = (blob) => console.log('A snapshot has been taken');
 const error = (error) => console.log('error');
 </script>
