@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import path from 'path';
 import testRoute from './api/routes/test.js';
+import { errorHandler, notFoundHandler } from '../middleware/errorHandler.js';
 
 dotenv.config();
 
@@ -17,6 +18,9 @@ app.use(helmet());
 app.use(express.static(path.join(dirname, '/public')));
 
 app.use(express.json());
+
+app.use(errorHandler);
+app.use(notFoundHandler);
 
 app.use('/test', testRoute);
 
