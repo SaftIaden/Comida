@@ -1,14 +1,54 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, toRaw } from 'vue';
 import axios from 'axios';
 import { useQuasar } from 'quasar';
+import { openDB } from 'idb';
+
 const $q = useQuasar();
 const search = ref('');
 const meals = ref([]);
+const storedMeals = ref([]);
+
 onMounted(async () => {
   const { data } = await axios.get('http://localhost:3000/meals');
   meals.value = data;
+
+  if (!window.indexedDB) alert('IndexedDB is not available!');
+  if (!db) await openDataBase();
+
+  await addAll();
 });
+
+let db = null;
+
+const openDataBase = async () => {
+  db = await openDB('mealDB', 1, {
+    upgrade(db) {
+      const store = db.createObjectStore('meals', { keyPath: 'id' });
+      store.createIndex('name', 'name');
+      store.createIndex('description', 'description');
+      store.createIndex('price', 'price');
+      store.createIndex('image', 'image');
+    },
+  });
+};
+
+const getStoredMeals = async () => {
+  storedMeals.value = await db.getAll('friends');
+};
+
+const addAll = async () => {
+  meals.value.forEach(async (meal) => {
+    await db.put('meals', toRaw(meal));
+  });
+  console.log(meals.value);
+  getStoredMeals();
+};
+
+const removeMeal = async (meal) => {
+  await db.delete('meals', meal.id);
+  getStoredMeals();
+};
 
 const filteredMeals = computed(() => {
   return meals.value.filter((meal) => {
@@ -41,6 +81,7 @@ const confirm = async (id) => {
       console.log('>>>> OK');
       console.log(id);
       const { data } = await axios.delete(`http://localhost:3000/meals/${id}`);
+      await removeMeal();
       console.log(data);
     })
     .onCancel(() => {
@@ -100,7 +141,7 @@ const patchMeal = async (id) => {
             <q-btn class="q-mr-lg" round color="negative" @click="confirm(m.id)"> <i class="fa-solid fa-trash"></i></q-btn>
           </div>
           <div v-if="editMeal" class="q-pa-md q-gutter-md">
-            <q-input rounded outlined label="Name" v-model="name"  />
+            <q-input rounded outlined label="Name" v-model="name" />
             <q-input rounded outlined v-model="description" label="Beschreibung" />
             <q-input rounded outlined v-model="price" label="Preis" mask="##.##" fill-mask="#" />
             <q-btn color="info" @click="patchMeal(m.id)">Confirm Edit</q-btn>
