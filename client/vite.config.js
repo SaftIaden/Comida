@@ -61,6 +61,17 @@ export default defineConfig({
               },
             },
           },
+          {
+            urlPattern: /^https?:\/\/localhost:3000\/meals/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'meals-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24, // Cache for 1 day
+              },
+            },
+          },
         ],
       },
     }),

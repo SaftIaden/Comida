@@ -87,11 +87,17 @@ define(['./workbox-64ec4c3a'], (function (workbox) { 'use strict';
     "url": "assets/index.57ee6086.js",
     "revision": null
   }, {
+    "url": "assets/index.afcc2632.js",
+    "revision": null
+  }, {
+    "url": "assets/index.d0c3706a.js",
+    "revision": null
+  }, {
     "url": "assets/index.f1ac76d4.js",
     "revision": null
   }, {
     "url": "index.html",
-    "revision": "957a5b08a53bcdce3920799a4eb9d42c"
+    "revision": "dd41fc7c26b78a40ade2bd7116d1e909"
   }, {
     "url": "registerSW.js",
     "revision": "1872c500de691dce40960bb85481de07"
@@ -123,6 +129,13 @@ define(['./workbox-64ec4c3a'], (function (workbox) { 'use strict';
       maxAgeSeconds: 86400
     }), new workbox.CacheableResponsePlugin({
       statuses: [0, 200]
+    })]
+  }), 'GET');
+  workbox.registerRoute(/^https?:\/\/localhost:3000\/meals/, new workbox.NetworkFirst({
+    "cacheName": "meals-cache",
+    plugins: [new workbox.ExpirationPlugin({
+      maxEntries: 50,
+      maxAgeSeconds: 86400
     })]
   }), 'GET');
 
