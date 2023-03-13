@@ -1,14 +1,41 @@
 <template>
   <q-page class="q-pa-md">
     <div v-if="!taken">
-      <Camera @loading="loading" @started="started" @stopped="stopped" @paused="paused" @resumed="resumed" @camera-change="cameraChange" @snapshot="snapshot" @error="error" ref="camera" :resolution="{ width: 375, height: 812 }" autoplay> </Camera>
+      <Camera
+        @loading="loading"
+        @started="started"
+        @stopped="stopped"
+        @paused="paused"
+        @resumed="resumed"
+        @camera-change="cameraChange"
+        @snapshot="snapshot"
+        @error="error"
+        ref="camera"
+        :resolution="{ width: 375, height: 812 }"
+        autoplay
+      >
+      </Camera>
       <q-btn color="info" @click="snapShot">Create snapshot</q-btn>
     </div>
     <div v-if="taken" class="q-gutter-md" style="font-family: Poppins">
       <h2 style="font-family: Poppins">Infos</h2>
       <q-input required rounded outlined v-model="name" label="Name" />
-      <q-input required rounded outlined v-model="description" label="Beschreibung" />
-      <q-input required rounded outlined v-model="price" label="Preis" mask="##.##" fill-mask="#" />
+      <q-input
+        required
+        rounded
+        outlined
+        v-model="description"
+        label="Beschreibung"
+      />
+      <q-input
+        required
+        rounded
+        outlined
+        v-model="price"
+        label="Preis"
+        mask="##.##"
+        fill-mask="#"
+      />
       <q-btn color="info" @click="taken = !taken">Neues Foto</q-btn>
       <q-btn color="info" @click="sendMeal">Senden</q-btn>
     </div>
@@ -64,9 +91,13 @@ const sendMeal = async () => {
   console.log(refFormData.value.get('price'));
   console.log(refFormData.value.get('image'));
 
-  const { data } = await axios.post('http://localhost:3000/meals', refFormData.value, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+  const { data } = await axios.post(
+    'http://localhost:3000/meals',
+    refFormData.value,
+    {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    },
+  );
   console.log(data);
 
   name.value = '';
@@ -74,12 +105,14 @@ const sendMeal = async () => {
   price.value = '';
 };
 
-const loading = () => console.log('Camera is loading and will start any second');
+const loading = () =>
+  console.log('Camera is loading and will start any second');
 const started = () => console.log('Camera has started');
 const stopped = () => console.log('Camera has stopped');
 const paused = () => console.log('Video feed has paused');
 const resumed = () => console.log('Video feed has resumed');
-const cameraChange = (deviceID) => console.log(`Camera has been changed to ${deviceID}`);
-const snapshot = (blob) => console.log('A snapshot has been taken');
-const error = (error) => console.log('error');
+const cameraChange = (deviceID) =>
+  console.log(`Camera has been changed to ${deviceID}`);
+const snapshot = (blob) => console.log('A snapshot has been taken', blob);
+const error = (error) => console.log('error', error);
 </script>
