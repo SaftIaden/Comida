@@ -22,7 +22,7 @@ if (!self.define) {
   const singleRequire = (uri, parentUri) => {
     uri = new URL(uri + ".js", parentUri).href;
     return registry[uri] || (
-
+      
         new Promise(resolve => {
           if ("document" in self) {
             const script = document.createElement("script");
@@ -35,7 +35,7 @@ if (!self.define) {
             resolve();
           }
         })
-
+      
       .then(() => {
         let promise = registry[uri];
         if (!promise) {
@@ -87,6 +87,9 @@ define(['./workbox-64ec4c3a'], (function (workbox) { 'use strict';
     "url": "assets/index.57ee6086.js",
     "revision": null
   }, {
+    "url": "assets/index.595a1bec.js",
+    "revision": null
+  }, {
     "url": "assets/index.5a403b18.js",
     "revision": null
   }, {
@@ -102,14 +105,11 @@ define(['./workbox-64ec4c3a'], (function (workbox) { 'use strict';
     "url": "assets/index.da513860.js",
     "revision": null
   }, {
-    "url": "assets/index.da513860.js",
-    "revision": null
-  }, {
     "url": "assets/index.f1ac76d4.js",
     "revision": null
   }, {
     "url": "index.html",
-    "revision": "a47110eb0645899ae148038bbb08a17e"
+    "revision": "38bbfbfd2ce886db5ae2ac2eba2d4364"
   }, {
     "url": "registerSW.js",
     "revision": "1872c500de691dce40960bb85481de07"
@@ -119,6 +119,42 @@ define(['./workbox-64ec4c3a'], (function (workbox) { 'use strict';
   }, {
     "url": "images/icons/android-chrome-512x512.png",
     "revision": "36142d97ee4057c65468a1b3d19888de"
+  }, {
+    "url": "favicon.ico",
+    "revision": "5640f38478a99c87e86553aa9db5a453"
+  }, {
+    "url": "images/icons/apple-touch-icon.png",
+    "revision": "3ab5812f5e99a2b9c7e775b88627c686"
+  }, {
+    "url": "images/icons/browserconfig.xml",
+    "revision": "2dccb9e7e4cee84d7cc8a17d6580ca5c"
+  }, {
+    "url": "images/icons/favicon-16x16.png",
+    "revision": "71958e1a3833787005ff3685ec69470d"
+  }, {
+    "url": "images/icons/favicon-32x32.png",
+    "revision": "72d7ae621ce939cfdd5d43f461d7c20f"
+  }, {
+    "url": "images/icons/favicon.ico",
+    "revision": "5640f38478a99c87e86553aa9db5a453"
+  }, {
+    "url": "images/icons/mstile-144x144.png",
+    "revision": "c972c1994d033782cf3276bcf9429c38"
+  }, {
+    "url": "images/icons/mstile-150x150.png",
+    "revision": "cedeadf50a18b4dbfd5b3db62fe16b0e"
+  }, {
+    "url": "images/icons/mstile-310x150.png",
+    "revision": "b0894c7291535be7dcd351fc96742045"
+  }, {
+    "url": "images/icons/mstile-310x310.png",
+    "revision": "0d9c8127e76390d781bf1fd5c65e6337"
+  }, {
+    "url": "images/icons/mstile-70x70.png",
+    "revision": "c2d95fab8fd427777ecfb7d1d7676c87"
+  }, {
+    "url": "images/icons/safari-pinned-tab.svg",
+    "revision": "35f6c22608a9cd46974080772b34191c"
   }, {
     "url": "manifest.webmanifest",
     "revision": "77b6965565cdb0ee6256d0ad86210b91"
