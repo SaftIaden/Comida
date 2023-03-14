@@ -30,6 +30,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest,
+      includeAssets: ['**/*.{js,css,html,jpg,ico,xml,svg,png,ttf,woff2}'],
       workbox: {
         mode: 'development',
         runtimeCaching: [
