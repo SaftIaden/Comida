@@ -22,7 +22,7 @@ if (!self.define) {
   const singleRequire = (uri, parentUri) => {
     uri = new URL(uri + ".js", parentUri).href;
     return registry[uri] || (
-      
+
         new Promise(resolve => {
           if ("document" in self) {
             const script = document.createElement("script");
@@ -35,7 +35,7 @@ if (!self.define) {
             resolve();
           }
         })
-      
+
       .then(() => {
         let promise = registry[uri];
         if (!promise) {
@@ -87,10 +87,19 @@ define(['./workbox-64ec4c3a'], (function (workbox) { 'use strict';
     "url": "assets/index.57ee6086.js",
     "revision": null
   }, {
+    "url": "assets/index.5a403b18.js",
+    "revision": null
+  }, {
+    "url": "assets/index.a37465f7.js",
+    "revision": null
+  }, {
     "url": "assets/index.afcc2632.js",
     "revision": null
   }, {
     "url": "assets/index.d0c3706a.js",
+    "revision": null
+  }, {
+    "url": "assets/index.da513860.js",
     "revision": null
   }, {
     "url": "assets/index.da513860.js",
