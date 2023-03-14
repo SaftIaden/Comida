@@ -2,8 +2,8 @@
 import { ref, onMounted } from 'vue';
 import NavBar from './components/NavBar.vue';
 
-let update = ref(false);
-let isOnline = ref(true);
+const update = ref(false);
+const isOnline = ref(true);
 
 const onlineTest = async () => {
   try {

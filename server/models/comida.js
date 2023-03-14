@@ -3,8 +3,7 @@
 import { query } from '../src/db/index.js';
 
 async function dBgetMeals() {
-  const { rows } = await query('select * from meals order by created_at desc;');
-  return rows;
+  return (await query('select * from meals order by created_at desc;')).rows;
 }
 
 async function dBgetLikedMeals() {
